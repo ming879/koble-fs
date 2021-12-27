@@ -1,0 +1,32 @@
+= Netkit Filesystem
+
+Tools and source for building the filesystem used by the
+Podman and UML drivers for link:https://github.com/b177y/netkit[netkit].
+
+== Overview
+
+This repo contains the source for building the debian buster
+filesystem used by netkit.
+Buildah is used to create the image,
+which is then copied to an ext4 image file for use with netkit.
+
+== Usage
+
+Requirements:
+
+* link:https://github.com/alperakcan/fuse-ext2[fuse-ext2]
+* link:https://github.com/containers/buildah[buildah]
+
+To make the OCI (docker/podman) image and UML fs:
+
+[source,sh]
+----
+make uml-image
+----
+
+== ToDo
+
+* [ ] Add tests
+* [ ] Add support for multiple filesystems (e.g. arch, ubuntu, centos, alpine)
+* [ ] Add docs
+* [ ] Improve Makefile (avoid repeating steps when deps haven't changed)

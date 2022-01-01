@@ -107,7 +107,6 @@ case "$1" in
          echo
          echo "${DELIMITER_TEXT}##################################################${NORMAL_TEXT}"
          echo
-         touch /hostlab/$HOSTNAME.ready
       fi
 
 

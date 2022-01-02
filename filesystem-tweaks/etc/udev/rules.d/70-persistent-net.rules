@@ -1,0 +1,1 @@
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:03:b8:fa:ca:de", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="vec*", NAME="netkit0"

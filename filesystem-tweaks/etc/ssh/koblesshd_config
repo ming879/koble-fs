@@ -13,7 +13,7 @@
 Port 46222
 #AddressFamily any
 #ListenAddress ::
-ListenAddress NETKIT0ADDR
+ListenAddress KOBLE0ADDR
 
 #HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_ecdsa_key

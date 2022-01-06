@@ -1,0 +1,12 @@
+[Unit]
+Description=Koble Shutdown
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/koble-startup-p1 stop
+ExecStartPost=/usr/local/bin/koble-startup-p2 stop
+StandardOutput=journal+console 
+
+[Install]
+WantedBy=shutdown.target

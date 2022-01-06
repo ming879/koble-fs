@@ -25,8 +25,8 @@ cat ./packages-custom | buildah run $wc bash -
 
 #buildah run $wc apt install --assume-yes --no-install-recommends wireguard-tools
 
-echo "Add netkit user"
-buildah run $wc useradd netkit -m -s /bin/bash -u 1000 -p $(openssl passwd -crypt netkit) -G sudo
+echo "Add koble user"
+buildah run $wc useradd koble -m -s /bin/bash -u 1000 -p $(openssl passwd -crypt koble) -G sudo
 
 echo "Set initial CMD"
 buildah config --cmd "/sbin/init" $wc
@@ -37,13 +37,13 @@ buildah copy $wc filesystem-tweaks /
 echo "Copying default homedirs"
 buildah run $wc mkdir -p /root
 buildah copy $wc HOME /root
-buildah run $wc mkdir -p /home/netkit
-buildah copy $wc HOME /home/netkit
+buildah run $wc mkdir -p /home/koble
+buildah copy $wc HOME /home/koble
 
-echo "Enabling netkit systemd services"
-buildah run $wc systemctl enable netkit-startup-phase1.service
-buildah run $wc systemctl enable netkit-startup-phase2.service
-buildah run $wc systemctl enable netkit-shutdown.service
+echo "Enabling koble systemd services"
+buildah run $wc systemctl enable koble-startup-phase1.service
+buildah run $wc systemctl enable koble-startup-phase2.service
+buildah run $wc systemctl enable koble-shutdown.service
 
 # sort out ttys and auto-logon
 buildah run $wc ln -s /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty0.service
@@ -59,6 +59,6 @@ for SERVICE in $DISABLED_SERVICES; do
 done
 
 echo "Commiting image"
-buildah commit $wc netkit-deb-test
+buildah commit $wc koble-deb-test
 
 buildah rm $wc

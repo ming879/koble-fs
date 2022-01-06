@@ -1,12 +1,12 @@
-= Netkit Filesystem
+= Koble Filesystem
 
 Tools and source for building the filesystem used by the
-Podman and UML drivers for link:https://github.com/b177y/netkit[netkit].
+Podman and UML drivers for link:https://github.com/b177y/koble[Koble].
 
 == Overview
 
 This repo contains the source for building the debian buster
-filesystem used by netkit.
+filesystem used by Koble.
 Buildah is used to create the image,
 which is then copied to an ext4 image file for use with netkit.
 
@@ -28,5 +28,6 @@ make uml-image
 
 * [ ] Add tests
 * [ ] Add support for multiple filesystems (e.g. arch, ubuntu, centos, alpine)
+* [ ] refactor startup/shutdown scripts
 * [ ] Add docs
-* [ ] Improve Makefile (avoid repeating steps when deps haven't changed)
+* [ ] Switch from `make` to `plz` for build system

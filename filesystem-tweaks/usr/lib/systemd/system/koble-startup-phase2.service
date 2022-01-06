@@ -1,11 +1,11 @@
 [Unit]
-Description=Netkit Startup
-After=netkit-mount.service netkit-startup-phase1.service
+Description=Koble Startup
+After=koble-mount.service koble-startup-phase1.service
 Before=getty@tty0.service getty@tty1.service
 
 [Service]
 Type=oneshot
-ExecStart=/etc/netkit/netkit-phase2 start
+ExecStart=/usr/local/bin/koble-startup-p2 start
 StandardOutput=journal+console
 TimeoutSec=300
 

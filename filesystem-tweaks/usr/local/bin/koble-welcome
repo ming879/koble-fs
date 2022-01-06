@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#
-### BEGIN INIT INFO
-# Provides:          netkit-welcome
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-#
-#
 # This script prints a welcome message
 
 #     Copyright 2002-2007 Massimo Rimondini - Computer Networks Research Group,
@@ -31,17 +21,17 @@
 #     with Netkit.  If not, see <http://www.gnu.org/licenses/>.
 
 HOSTNAME=$(cat /proc/cmdline | awk -v FS== -v RS=" " '($1=="name") {print $2}')
-NETKIT_FILESYSTEM_VERSION=$(awk '/filesystem version/ {print $NF}' /etc/netkit-filesystem-version)
-NETKIT_KERNEL_VERSION=$(uname -r | cut -d '-' -f 4-)
-KERNEL_VERSION=$(uname -r | cut -d '-' -f 1)
-: ${NETKIT_FILESYSTEM_VERSION:="<unknown>"}
-: ${NETKIT_KERNEL_VERSION:="<unknown>"}
-: ${KERNEL_VERSION:="<unknown>"}
+KOBLE_FILESYSTEM_VERSION=$(awk '/filesystem version/ {print $NF}' /etc/koble-filesystem-version)
+KOBLE_KERNEL_VERSION=$(uname -r | cut -d '-' -f 4-)
+KOBLE_VERSION=$(uname -r | cut -d '-' -f 1)
+: ${KOBLE_FILESYSTEM_VERSION:="<unknown>"}
+: ${KOBLE_KERNEL_VERSION:="<unknown>"}
+: ${KOBLE_VERSION:="<unknown>"}
 
-echo "Netkit kernel $NETKIT_KERNEL_VERSION ($KERNEL_VERSION), filesystem $NETKIT_FILESYSTEM_VERSION"
+echo "Koble kernel $KOBLE_KERNEL_VERSION ($KERNEL_VERSION), filesystem $KOBLE_FILESYSTEM_VERSION"
 echo -e "\e[34;1m##################################"
 echo "##                              ##"
-echo "##           NETKIT             ##"
+echo "##           KOBLE              ##"
 echo "##                              ##"
 echo -e "##################################\e[0m"
 echo

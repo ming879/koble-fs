@@ -19,18 +19,6 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Netkit.  If not, see <http://www.gnu.org/licenses/>.
 
-### BEGIN INIT INFO
-# Provides:          netkit-phase2
-# Required-Start:    netkit-phase1 
-# Required-Stop:     netkit-phase1 
-# Should-Start:      networking
-# Should-Stop:       networking
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Netkit phase 2
-# Description:       This is a Netkit initialization script. It is intended for
-#                    usage inside virtual machines.
-### END INIT INFO
 
 # ANSI style escape sequences
 DELIMITER_TEXT=$'\e[34;1m'
@@ -56,7 +44,7 @@ export HOSTLAB
 case "$1" in
    start) 
       echo
-      echo "${DELIMITER_TEXT}--- Starting Netkit phase 2 init script ---${NORMAL_TEXT}"
+      echo "${DELIMITER_TEXT}--- Starting Koble phase 2 init script ---${NORMAL_TEXT}"
 
       if [ -f /hostlab/shared.startup ]; then
          echo
@@ -110,18 +98,13 @@ case "$1" in
       fi
 
 
-      if [ ! -z "$TEST" ]; then
-         /sbin/netkit-test-phase
-      fi
-      
-
-      echo "${DELIMITER_TEXT}--- Netkit phase 2 initialization terminated ---${PLAIN_TEXT}"
+      echo "${DELIMITER_TEXT}--- Koble phase 2 initialization terminated ---${PLAIN_TEXT}"
       echo
       ;;
 
    stop)
       echo
-      echo "${DELIMITER_TEXT}--- Starting Netkit phase 2 shutdown script ---${NORMAL_TEXT}"
+      echo "${DELIMITER_TEXT}--- Starting Koble phase 2 shutdown script ---${NORMAL_TEXT}"
 
       if [ -f /hostlab/$HOSTNAME.shutdown ]; then
          echo
@@ -140,7 +123,7 @@ case "$1" in
       fi
 
       
-      echo "${DELIMITER_TEXT}--- Netkit shutdown phase 2 terminated ---${PLAIN_TEXT}"
+      echo "${DELIMITER_TEXT}--- Koble shutdown phase 2 terminated ---${PLAIN_TEXT}"
       echo
       ;;
 

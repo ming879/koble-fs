@@ -20,18 +20,6 @@
 #     along with Netkit.  If not, see <http://www.gnu.org/licenses/>.
 
 
-### BEGIN INIT INFO
-# Provides:          netkit-phase1
-# Required-Start:
-# Required-Stop:
-# Should-Start:
-# Should-Stop:
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Netkit phase 1
-# Description:       This is a Netkit initialization script. It is intended for
-#                    usage inside virtual machines.
-### END INIT INFO
 
 # Function that mounts a certain directory on the host
 mountdir() {
@@ -53,7 +41,7 @@ PLAIN_TEXT=$'\e[0m'
 case "$1" in
    start) 
       echo
-      echo "${DELIMITER_TEXT}--- Starting Netkit phase 1 init script ---${NORMAL_TEXT}"
+      echo "${DELIMITER_TEXT}--- Starting Koble phase 1 init script ---${NORMAL_TEXT}"
 
       ASSIGN_VARIABLES=$(cat /proc/cmdline | awk -v FS== -v RS=' ' \
          '
@@ -63,7 +51,7 @@ case "$1" in
             ($1=="title") {print "TITLE=" $2}
             ($1=="def_route") {print "DEFAULT_ROUTE=" $2}
             ($1=="ubd0") {print "FILESYSTEM=" $2}
-            ($1=="autoconf_netkit0") {print "MGMTIFACE=" $2}
+            ($1=="autoconf_koble0") {print "MGMTIFACE=" $2}
          ')
 
       eval "$ASSIGN_VARIABLES"
@@ -131,13 +119,11 @@ case "$1" in
 
       # configure management interface
       if [ -n "$MGMTIFACE" ]; then
-        ip link set netkit0 up
-        ip addr add "$MGMTIFACE" dev netkit0
-        echo "Got mgmtiface: $MGMTIFACE"
-        NKADDR=$(echo "$MGMTIFACE" | cut -d/ -f1)
-        echo "Got nkaddr $NKADDR"
-        sed -i "s|^ListenAddress.*|ListenAddress $NKADDR|g" /etc/ssh/netkitsshd_config
-        systemctl start netkit_sshd.service
+        ip link set koble0 up
+        ip addr add "$MGMTIFACE" dev koble0
+        KOBADDR=$(echo "$MGMTIFACE" | cut -d/ -f1)
+        sed -i "s|^ListenAddress.*|ListenAddress $KOBADDR|g" /etc/ssh/koblesshd_config
+        systemctl start koble_sshd.service
       fi
 
       # Insert a default entry in the routing table, if asked to
@@ -147,13 +133,13 @@ case "$1" in
          route add default gateway $DEFAULT_ROUTE
       fi
 
-      echo "${DELIMITER_TEXT}--- Netkit phase 1 initialization terminated ---${PLAIN_TEXT}"
+      echo "${DELIMITER_TEXT}--- Koble phase 1 initialization terminated ---${PLAIN_TEXT}"
       echo
       ;;
 
    stop)
       echo
-      echo "${DELIMITER_TEXT}--- Starting Netkit phase 1 shutdown script ---${NORMAL_TEXT}"
+      echo "${DELIMITER_TEXT}--- Starting Koble phase 1 shutdown script ---${NORMAL_TEXT}"
 
       if [ -d /hostlab ]; then
          echo  "Unmounting and removing /hostlab..."
@@ -165,7 +151,7 @@ case "$1" in
       umount /hosthome
       rmdir /hosthome
 
-      echo "${DELIMITER_TEXT}--- Netkit phase 1 shutdown terminated ---${PLAIN_TEXT}"
+      echo "${DELIMITER_TEXT}--- Koble phase 1 shutdown terminated ---${PLAIN_TEXT}"
       echo
       ;;
 

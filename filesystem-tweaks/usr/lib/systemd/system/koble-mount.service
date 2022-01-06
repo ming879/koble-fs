@@ -1,11 +1,11 @@
 [Unit]
-Description=Netkit Mount Startup
+Description=Koble Mount Startup
 Before=networking.target systemd-modules-load.service
 DefaultDependencies=no
 
 [Service]
 Type=oneshot
-ExecStart=/etc/netkit/netkit-mount-modules-dir start
+ExecStart=/usr/local/bin/koble-mount-modules-dir start
 StandardOutput=journal+console 
 
 [Install]

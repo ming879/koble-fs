@@ -1,10 +1,10 @@
 [Unit]
-Description=Netkit Startup
-After=netkit-mount.service
+Description=Koble Startup
+After=koble-mount.service
 
 [Service]
 Type=oneshot
-ExecStart=/etc/netkit/netkit-phase1 start
+ExecStart=/usr/local/bin/koble-startup-p1 start
 StandardOutput=journal+console
 
 [Install]

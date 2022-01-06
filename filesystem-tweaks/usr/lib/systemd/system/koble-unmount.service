@@ -1,0 +1,11 @@
+[Unit]
+Description=Koble Mount Shutdown
+After=networking.target koble-shutdown.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/koble-mount-modules-dir stop
+StandardOutput=journal+console
+
+[Install]
+WantedBy=shutdown.target

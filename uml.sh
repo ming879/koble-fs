@@ -10,9 +10,10 @@ buildah run $wc ln -s /lib/systemd/system/poweroff.target /etc/systemd/system/ct
 # Install udev
 buildah run $wc apt update --assume-yes
 buildah run $wc apt install udev
+buildah run $wc apt clean
 
 
-dd if=/dev/zero of=build/koble-fs bs=1 count=1 seek=4G
+dd if=/dev/zero of=build/koble-fs bs=1 count=1 seek=2G
 mkfs.ext4 build/koble-fs
 
 # copy from container to bootstrap-fs
@@ -20,7 +21,6 @@ mntsrc=$(buildah mount $wc)
 echo "mounted buildah container at $mntsrc"
 mntdst="build/mountimage"
 mkdir $mntdst
-ls -lha build/koble-fs
 fuse-ext2 build/koble-fs build/mountimage -o rw+
 
 echo "Copying from $mntsrc $mntdst"

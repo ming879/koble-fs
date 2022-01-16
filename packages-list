@@ -19,7 +19,6 @@ debconf-utils
 dnsmasq
 dnsutils
 ebtables
-uml-utilities
 util-linux
 # emacs23-nox
 file

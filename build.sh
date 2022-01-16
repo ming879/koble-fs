@@ -23,6 +23,8 @@ buildah run $wc apt install --assume-yes ${PACKAGES_LIST}
 
 cat ./packages-custom | buildah run $wc bash -
 
+buildah run $wc apt clean
+
 #buildah run $wc apt install --assume-yes --no-install-recommends wireguard-tools
 
 echo "Add koble user"

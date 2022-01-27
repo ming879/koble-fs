@@ -4,7 +4,7 @@ After=koble-mount.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/koble-startup-p1 start
+ExecStart=/usr/local/bin/kstart phase1
 StandardOutput=journal+console
 
 [Install]

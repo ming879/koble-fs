@@ -22,6 +22,7 @@ lxc
 lxc-net
 lxcfs
 man-db
+man-db.timer
 openbsd-inetd
 openvpn
 pppd-dns
@@ -36,3 +37,6 @@ stunnel4
 systemd-timesyncd
 x11-common
 xl2tpd
+apt-daily.timer
+apt-daily.service
+pcscd.socket

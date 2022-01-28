@@ -1,6 +1,5 @@
 [Unit]
-Description=Koble Startup
-After=koble-mount.service
+Description=Koble Startup Phase 1
 
 [Service]
 Type=oneshot

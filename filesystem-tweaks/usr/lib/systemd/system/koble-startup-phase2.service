@@ -1,11 +1,11 @@
 [Unit]
-Description=Koble Startup
-After=koble-mount.service koble-startup-phase1.service
+Description=Koble Startup Phase 2
+After=koble-startup-phase1.service
 Before=getty@tty0.service getty@tty1.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/koble-startup-p2 start
+ExecStart=/usr/local/bin/kstart phase2
 StandardOutput=journal+console
 TimeoutSec=300
 

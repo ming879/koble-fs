@@ -4,8 +4,7 @@ Before=shutdown.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/koble-startup-p1 stop
-ExecStartPost=/usr/local/bin/koble-startup-p2 stop
+ExecStart=/usr/local/bin/kstart shutdown
 StandardOutput=journal+console 
 
 [Install]

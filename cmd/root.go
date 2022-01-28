@@ -23,11 +23,17 @@ var ph1 = &cobra.Command{
 var ph2 = &cobra.Command{
 	Use:   "phase2",
 	Short: "start phase2 of koble startup",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return startup.StartPhaseTwo()
+	},
 }
 
 var shutdown = &cobra.Command{
 	Use:   "shutdown",
 	Short: "start of koble shutdown",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return startup.Shutdown()
+	},
 }
 
 func init() {
